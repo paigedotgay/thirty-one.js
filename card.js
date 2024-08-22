@@ -24,15 +24,15 @@ function buildCard(face, suit) {
 }
 
 /**
- * Returns a shuffled array of cards
+ * Returns an unshuffled array (deck) of cards
  * @returns {Array}
  */
 function buildDeck() {
-    return shuffleArray(Array.from( (function*() {
+    return Array.from((function* () {
         for (let suit of ["clubs", "diamonds", "hearts", "spades"]) {
             for (let face of [...range(2, 11), "J", "Q", "K", "A"]) {
                 yield buildCard(face, suit);
             }
         }
-    } )() ));
+    })());
 }
