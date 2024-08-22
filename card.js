@@ -1,4 +1,4 @@
-import { range, shuffleArray } from "big-brain.js";
+import { range } from "big-brain.js";
 
 /**
  * Adds important info to a card, including the value and a pretty version of the suit
@@ -18,8 +18,7 @@ function buildCard(face, suit) {
             "diamonds": "♦",
             "hearts": "♥︎",
             "spades": "♠︎"
-        }
-        [suit]}`
+        }[suit]}`
     }
 }
 
@@ -27,12 +26,12 @@ function buildCard(face, suit) {
  * Returns an unshuffled array (deck) of cards
  * @returns {Array}
  */
-function buildDeck() {
+export function buildDeck() {
     return Array.from((function* () {
         for (let suit of ["clubs", "diamonds", "hearts", "spades"]) {
             for (let face of [...range(2, 11), "J", "Q", "K", "A"]) {
                 yield buildCard(face, suit);
             }
         }
-    })());
+    })())
 }
