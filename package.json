@@ -1,0 +1,26 @@
+{
+  "name": "thirty-one",
+  "version": "1.0.0",
+  "description": "A translation of [my Clojure library](https://github.com/paigedotgay/thirty-one",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paigedotgay/thirty-one.js.git"
+  },
+  "author": {
+    "name": "paigedotgay",
+    "email": "paige@paige.gay",
+    "url": "https://paige.gay"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paigedotgay/thirty-one.js/issues"
+  },
+  "homepage": "https://github.com/paigedotgay/thirty-one.js#readme",
+  "dependencies": {
+    "big-brain.js": "^2.0.2"
+  }
+}
