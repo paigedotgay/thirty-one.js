@@ -24,21 +24,15 @@ function buildCard(face, suit) {
 }
 
 /**
- * Generates a deck of cards, you probably want `buildDeck`
- * @returns {Generator}
- */
-function* generateDeck() {
-    for (let suit of ["clubs", "diamonds", "hearts", "spades"]) {
-        for (let face of [...range(2, 11), "J", "Q", "K", "A"]) {
-            yield buildCard(face, suit);
-        }
-    }
-}
-
-/**
  * Returns a shuffled array of cards
  * @returns {Array}
  */
 function buildDeck() {
-    return shuffleArray(Array.from(generateDeck()));
+    return shuffleArray(Array.from( (function*() {
+        for (let suit of ["clubs", "diamonds", "hearts", "spades"]) {
+            for (let face of [...range(2, 11), "J", "Q", "K", "A"]) {
+                yield buildCard(face, suit);
+            }
+        }
+    } )() ));
 }
