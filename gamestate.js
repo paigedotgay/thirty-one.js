@@ -18,23 +18,21 @@ function newGamestate() {
 }
 
 /**
- * Decreases a player's life by 1
+ * Subtracts a life from the player at `playerIndex`.
  * @param {*} gamestate current gamestate
  * @param {*} playerIndex the index of the player to lose life
  */
 function decLife(gamestate, playerIndex) {
-    /**
-     * TODO:
-     * ok so tbh I'm not sure how I'm gonna do this part.
-     * I'm trying to do this in a 100% functional way
-     * but js doesn't seem to like that very much.
-     * 
-     * might do some weird destructuring and restructuring thing
-     * like let { players, ...rest } = gamestate;
-     * players[playerIndex].life--;
-     * return {players, ...rest};
-     * 
-     * but that middle line feels awfully side-effect-y.
-     * need to think more.
-     */
+    // "But paige," I hear you say, "doesn't this iterate over all players?"
+    // You are right, but it's already weird to read.
+    // I could do slicing, and maybe I will later, but that feels worse somehow.
+    // Plus we have a maximum of 8 players, any slowing should be unnoticable.
+    return {
+        ...gamestate,
+        players: gamestate.players.map((player, index) => 
+        index != playerIndex 
+            ? player
+            : { ...player, lives: player.lives - 1 }
+    )};
 }
+      
