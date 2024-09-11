@@ -29,10 +29,10 @@ function decLife(gamestate, playerIndex) {
     // Plus we have a maximum of 8 players, any slowing should be unnoticable.
     return {
         ...gamestate,
-        players: gamestate.players.map((player, index) => 
-        index != playerIndex 
-            ? player
-            : { ...player, lives: player.lives - 1 }
-    )};
+        players: gamestate.players.map((player, index) =>
+            index != playerIndex
+                ? player
+                : { ...player, lives: player.lives - 1 }
+        )
+    };
 }
-      
