@@ -10,9 +10,13 @@ function buildCard(face, suit) {
     return {
         "face": face,
         "suit": suit,
-        // If anyone says a fucking thing about these lines I'll make them harder to read
-        // I will make this more readable when JS makes switches suck less
-        "value": (face == "A") ? 11 : ("JQK".includes(face)) ? 10 : face,
+        
+        "value": (face == "A")
+            ? 11
+            : ("JQK".includes(face))
+                ? 10
+                : face,
+        
         "name": `${face}${{
             "clubs": "♣︎",
             "diamonds": "♦",
