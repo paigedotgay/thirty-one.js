@@ -26,7 +26,7 @@ function decLife(gamestate, playerIndex) {
     // "But paige," I hear you say, "doesn't this iterate over all players?"
     // You are right, but it's already weird to read.
     // I could do slicing, and maybe I will later, but that feels worse somehow.
-    // Plus we have a maximum of 8 players, any slowing should be unnoticable.
+    // Plus we have a maximum of 8 players, any slowing should be unnoticeable.
     return {
         ...gamestate,
         players: gamestate.players.map((player, index) =>
