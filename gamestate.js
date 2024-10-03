@@ -3,7 +3,7 @@ import { shuffleArray } from "big-brain"
 
 /**
  * Creates the basic skeleton of the gamestate, including a shuffled deck
- * @returns {Object} The basic gamestate with a shuffled deck.
+ * @returns {object} The basic gamestate with a shuffled deck.
  */
 function newGamestate() {
     return {
@@ -19,8 +19,8 @@ function newGamestate() {
 
 /**
  * Subtracts a life from the player at `playerIndex`.
- * @param {*} gamestate current gamestate
- * @param {*} playerIndex the index of the player to lose life
+ * @param {object} gamestate - current gamestate
+ * @param {number} playerIndex - the index of the player to lose life
  */
 function decLife(gamestate, playerIndex) {
     // "But paige," I hear you say, "doesn't this iterate over all players?"
