@@ -49,16 +49,17 @@ function isTimeToScore(gamestate) {
  */
 function isPlayerLosingLife(gamestate, playerIndex) {
     const { knockingPlayerIndex, players } = gamestate;
-    const lowScore = Math.min(...players.map((player) => player.handPoints));
-    const highScore = Math.max(...players.map((player) => player.handPoints));
-    const player = players[playerIndex];
-    const score = player.handPoints;
+    const allScores = players.map((player) => player.handPoints);
+    const lowestScore = Math.min(...allScores);
+    const highestScore = Math.max(...allScores);
     const blitzPlayers = blitzingPlayers(gamestate);
+    const player = players[playerIndex];
+    const playerScore = player.handPoints;
     
     // Conditions for losing a round.
-    const isLowestScore = score == lowScore;
-    const failedKnock = playerIndex == knockingPlayerIndex && score != highScore;
+    const hasLowestScore = playerScore == lowestScore;
+    const failedKnock = playerIndex == knockingPlayerIndex && playerScore != highestScore;
     const lostToBlitz = blitzPlayers.length && !blitzPlayers.includes(player);
     
-    return Boolean(isLowestScore || failedKnock || lostToBlitz);
+    return hasLowestScore || failedKnock || lostToBlitz;
 }
