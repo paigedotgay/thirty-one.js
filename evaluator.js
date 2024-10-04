@@ -1,7 +1,7 @@
 /**
  * Stringifies a players hand.
- * @param {object} gamestate - The current gamestate.
- * @param {number} playerIndex - The index of the player.
+ * @param {object} gamestate
+ * @param {number} playerIndex
  * @returns {string}
  */
 function handToString(gamestate, playerIndex) {
@@ -16,5 +16,5 @@ function handToString(gamestate, playerIndex) {
  * @returns {Array<object>}
  */
 function blitzingPlayers(gamestate) {
-    return gamestate.players.filter( (player) => player.handPoints == 31 );
+    return gamestate.players.filter((player) => player.handPoints == 31);
 }
