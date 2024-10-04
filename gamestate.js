@@ -12,7 +12,7 @@ function newGamestate() {
         "deck": shuffleArray(buildDeck()),
         "discard": null,
         "round": 0,
-        "knockingPlayer": null,
+        "knockingPlayerIndex": null,
         "players": [],
     }
 }
