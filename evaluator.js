@@ -73,3 +73,12 @@ function getLosingPlayerIndices(gamestate) {
     return gamestate.players.keys() //extremely sick way to get the indices of all players
         .filter((i) => isPlayerLosingLife(gamestate, i));
 }
+
+/**
+ * Returns the names of all players who should lose a point.
+ * @param {object} gamestate 
+ * @returns {Array<string>}
+ */
+function getLosingPlayerNames(gamestate) {
+    return getLosingPlayerIndices(gamestate).map((i) => gamestate.players[i].name);
+}
