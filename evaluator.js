@@ -18,3 +18,19 @@ function handToString(gamestate, playerIndex) {
 function blitzingPlayers(gamestate) {
     return gamestate.players.filter((player) => player.handPoints == 31);
 }
+
+/**
+ * Returns true if the game should move to the scoring phase.
+ * 
+ * This is true if:
+ * - a player has 31 points in hand.
+ * - the knocking player is taking their next turn.
+ * - the deck is empty.
+ * @param {object} gamestate 
+ */
+function isTimeToScore(gamestate) {
+    const { activePlayer, knockingPlayer, deck } = gamestate;
+    return Boolean(blitzingPlayers(gamestate).length
+        || activePlayer == knockingPlayer
+        || !deck.length);
+}
