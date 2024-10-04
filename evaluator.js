@@ -63,3 +63,13 @@ function isPlayerLosingLife(gamestate, playerIndex) {
     
     return hasLowestScore || failedKnock || lostToBlitz;
 }
+
+/**
+ * Returns the indices of any player who should lose a point.
+ * @param {object} gamestate 
+ * @returns {Array<number>}
+ */
+function getLosingPlayerIndices(gamestate) {
+    return gamestate.players.keys() //extremely sick way to get the indices of all players
+        .filter((i) => isPlayerLosingLife(gamestate, i));
+}
