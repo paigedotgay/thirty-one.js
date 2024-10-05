@@ -80,3 +80,15 @@ function score(gamestate) {
 
     return { ...scoredGamestate, awaiting, players: updatedPlayers };
 }
+
+/**
+ * Returns a new instance of the gamestate where gamestate.activePlayer is incremented (or reset if at end).
+ * @param {object} gamestate 
+ * @returns {object} Edited gamestate
+ */
+function nextPlayer(gamestate) {
+    const activePlayer = gamestate.activePlayerIndex == gamestate.players.length - 1
+        ? 0
+        : gamestate.activePlayerIndex + 1;
+    return {...gamestate, activePlayer}
+}
