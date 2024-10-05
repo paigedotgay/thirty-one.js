@@ -1,8 +1,10 @@
-import { buildDeck } from "./deck"
-import { shuffleArray } from "big-brain"
+import { buildDeck } from "./deck";
+import { getLosingPlayerIndices } from "./evaluator";
+import { shuffleArray } from "big-brain";
 
 /**
  * Creates the basic skeleton of the gamestate, including a shuffled deck
+ * 
  * @returns {object} The basic gamestate with a shuffled deck.
  */
 function newGamestate() {
@@ -21,6 +23,7 @@ function newGamestate() {
 
 /**
  * Returns a new instance of gamestate where the player at `playerIndex` has one less life.
+ * 
  * @param {object} gamestate
  * @param {number} playerIndex
  * @returns {object} Edited gamestate
@@ -38,4 +41,28 @@ function decLife(gamestate, playerIndex) {
                 : { ...player, lives: player.lives - 1 }
         )
     };
+}
+
+/**
+ * 
+ * Returns a new instance of the game state where each player for whom 
+ * {@link willPlayerLoseLife()} returns true has their life decreased by one.
+ * 
+ * @param {object} gamestate 
+ * @returns {object} Edited gamestate.
+ */
+function score(gamestate) {
+    const { players } = gamestate
+    const awaiting = "END_ROUND";
+    const losingPlayerIndices = getLosingPlayerIndices(gamestate);
+    const updatedPlayers = players
+        .keys()
+        .map((i) =>
+            losingPlayerIndices.includes(i)
+                ? losingPlayerIndices
+                    .map((j) =>
+                        ({ ...players[j], life: players[j].life - 1 }))
+                : players[i]);
+
+    return { ...gamestate, awaiting, players: updatedPlayers };
 }

@@ -2,6 +2,7 @@ import { range } from "big-brain.js";
 
 /**
  * Adds important info to a card, including the value and a pretty version of the suit
+ * 
  * @param {string|number} face 2-10 or A, J, Q, K
  * @param {string} suit clubs, diamonds, hearts, or spades
  * @returns {object}
@@ -28,6 +29,7 @@ function buildCard(face, suit) {
 
 /**
  * Returns an unshuffled array (deck) of cards
+ * 
  * @returns {Array<object>}
  */
 export function buildDeck() {

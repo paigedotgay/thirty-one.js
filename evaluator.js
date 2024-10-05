@@ -1,5 +1,6 @@
 /**
  * Stringifies a players hand.
+ * 
  * @param {object} gamestate
  * @param {number} playerIndex
  * @returns {string}
@@ -12,6 +13,7 @@ function handToString(gamestate, playerIndex) {
 
 /**
  * Returns all players who have 31 points in hand.
+ * 
  * @param {object} gamestate 
  * @returns {Array<object>}
  */
@@ -27,6 +29,7 @@ function blitzingPlayers(gamestate) {
  * - a player has 31 points in hand.
  * - the knocking player is taking their next turn.
  * - the deck is empty.
+ * 
  * @param {object} gamestate
  * @returns {boolean}
  */
@@ -39,11 +42,12 @@ function isTimeToScore(gamestate) {
 
 /**
  * Returns a new instance of the gamestate with `lowestScore` and `highestScore set.
+ * 
  * @param {object} gamestate 
  * @returns {object} Edited gamestate
  */
 function setLowestAndHighestScores(gamestate) {
-    const allScores = players.map((player) => player.handPoints);
+    const allScores = gamestate.players.map((player) => player.handPoints);
     const lowestScore = Math.min(...allScores);
     const highestScore = Math.max(...allScores);
     return { ...gamestate, lowestScore, highestScore }
@@ -56,28 +60,13 @@ function setLowestAndHighestScores(gamestate) {
  * - The player has the lowest score.
  * - The player knocked and doesn't have the highest score.
  * - Someone besides the player has 31 points in hand.
+ * 
  * @param {object} gamestate 
  * @param {number} playerIndex 
  * @returns {boolean}
  */
 function willPlayerLoseLife(gamestate, playerIndex) {
     const { lowestScore, highestScore, knockingPlayerIndex, players } = gamestate;
-
-    // this... may be the worst thing I've ever written.
-    (lowestScore && highestScore)
-        ?? (() => {
-            throw new Error(
-                `${lowestScore
-                    ?? lowestScore
-                        ? ""
-                        : "lowestScore is null "}`
-                +
-                `${highestScore
-                    ?? highestScore
-                        ? ""
-                        : "highestScore is null"}`)
-        })();
-        
     const blitzPlayers = blitzingPlayers(gamestate);
     const player = players[playerIndex];
     const playerScore = player.handPoints;
@@ -92,6 +81,7 @@ function willPlayerLoseLife(gamestate, playerIndex) {
 
 /**
  * Returns the indices of any player who should lose a life.
+ * 
  * @param {object} gamestate 
  * @returns {Array<number>}
  */
@@ -102,6 +92,7 @@ function getLosingPlayerIndices(gamestate) {
 
 /**
  * Returns the names of all players who should lose a point.
+ * 
  * @param {object} gamestate 
  * @returns {Array<string>}
  */
