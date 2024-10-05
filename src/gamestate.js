@@ -87,8 +87,10 @@ function score(gamestate) {
  * @returns {object} Edited gamestate
  */
 function nextPlayer(gamestate) {
-    const activePlayer = gamestate.activePlayerIndex == gamestate.players.length - 1
+    const { activePlayerIndex } = gamestate
+    return {...gamestate, 
+        activePlayerIndex: activePlayerIndex == gamestate.players.length - 1
         ? 0
-        : gamestate.activePlayerIndex + 1;
-    return {...gamestate, activePlayer}
+        : gamestate.activePlayerIndex + 1,
+    }
 }
