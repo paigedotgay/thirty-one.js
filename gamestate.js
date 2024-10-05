@@ -44,7 +44,6 @@ function decLife(gamestate, playerIndex) {
 }
 
 /**
- * 
  * Returns a new instance of the game state where each player for whom 
  * {@link willPlayerLoseLife()} returns true has their life decreased by one.
  * 
