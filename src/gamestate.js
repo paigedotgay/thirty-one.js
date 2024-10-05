@@ -22,6 +22,24 @@ function newGamestate() {
 }
 
 /**
+ * Returns a new instance of the gamestate with a player added.
+ * 
+ * @param {object} gamestate
+ * @param {string} playerName
+ * @returns {object} Edited Gamestate
+ */
+function addPlayer(gamestate, playerName) {
+    const oldPlayerList = gamestate.players;
+    return {
+        ...gamestate,
+        players: [
+            ...oldPlayerList,
+            { name: playerName, hand: [], handPoints: 0, lives: 5, }
+        ]
+    }
+}
+
+/**
  * Returns a new instance of gamestate where the player at `playerIndex` has one less life.
  * 
  * @param {object} gamestate
@@ -54,14 +72,10 @@ function score(gamestate) {
     const { players } = gamestate
     const awaiting = "END_ROUND";
     const losingPlayerIndices = getLosingPlayerIndices(gamestate);
-    const updatedPlayers = players
-        .keys()
-        .map((i) =>
-            losingPlayerIndices.includes(i)
-                ? losingPlayerIndices
-                    .map((j) =>
-                        ({ ...players[j], life: players[j].life - 1 }))
-                : players[i]);
+    const updatedPlayers = [...players.keys()]
+        .map((playerIndex) => willPlayerLoseLife(gamestate, playerIndex)
+            ? {...players[playerIndex], lives: players[playerIndex].lives - 1}
+            : players[playerIndex])
 
     return { ...gamestate, awaiting, players: updatedPlayers };
 }

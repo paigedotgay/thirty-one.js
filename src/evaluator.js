@@ -86,8 +86,8 @@ function willPlayerLoseLife(gamestate, playerIndex) {
  * @returns {Array<number>}
  */
 function getLosingPlayerIndices(gamestate) {
-    return gamestate.players.keys() //extremely sick way to get the indices of all players.
-        .filter((i) => isPlayerLosingLife(gamestate, i));
+    return [...gamestate.players.keys()] //extremely sick way to get the indices of all players.
+        .filter((i) => willPlayerLoseLife(gamestate, i));
 }
 
 /**
