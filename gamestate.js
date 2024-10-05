@@ -7,20 +7,23 @@ import { shuffleArray } from "big-brain"
  */
 function newGamestate() {
     return {
-        "activePlayer": 0,
+        "activePlayerIndex": 0,
         "awaiting": null,
         "deck": shuffleArray(buildDeck()),
         "discard": null,
         "round": 0,
         "knockingPlayerIndex": null,
         "players": [],
+        "lowestScore": null,
+        "highestScore": null,
     }
 }
 
 /**
- * Subtracts a life from the player at `playerIndex`.
- * @param {object} gamestate - current gamestate
- * @param {number} playerIndex - the index of the player to lose life
+ * Returns a new instance of gamestate where the player at `playerIndex` has one less life.
+ * @param {object} gamestate
+ * @param {number} playerIndex
+ * @returns {object} Edited gamestate
  */
 function decLife(gamestate, playerIndex) {
     // "But paige," I hear you say, "doesn't this iterate over all players?"
