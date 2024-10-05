@@ -38,25 +38,15 @@ function isTimeToScore(gamestate) {
 }
 
 /**
- * Returns a new instance of the gamestate with `lowestScore` set to the lowest score among players.
+ * Returns a new instance of the gamestate with `lowestScore` and `highestScore set.
  * @param {object} gamestate 
  * @returns {object} Edited gamestate
  */
-function setLowestScore(gamestate) {
+function setLowestAndHighestScores(gamestate) {
     const allScores = players.map((player) => player.handPoints);
     const lowestScore = Math.min(...allScores);
-    return { ...gamestate, lowestScore }
-}
-
-/**
- * Returns a new instance of the gamestate with `highestScore` set to the highest score among players.
- * @param {object} gamestate 
- * @returns {object} Edited gamestate
- */
-function setHighestScore(gamestate) {
-    const allScores = players.map((player) => player.handPoints);
     const highestScore = Math.max(...allScores);
-    return { ...gamestate, highestScore }
+    return { ...gamestate, lowestScore, highestScore }
 }
 
 /**
