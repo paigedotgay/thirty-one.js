@@ -1,5 +1,5 @@
 import { buildDeck } from "./deck";
-import { getLosingPlayerIndices } from "./evaluator";
+import { getLosingPlayerIndices, setHighestAndLowestScores } from "./evaluator";
 import { shuffleArray } from "big-brain";
 
 /**
@@ -71,11 +71,12 @@ function decLife(gamestate, playerIndex) {
 function score(gamestate) {
     const { players } = gamestate
     const awaiting = "END_ROUND";
-    const losingPlayerIndices = getLosingPlayerIndices(gamestate);
+    const scoredGamestate = setHighestAndLowestScores(gamestate);
+    const losingPlayerIndices = getLosingPlayerIndices(scoredGamestate);
     const updatedPlayers = [...players.keys()]
-        .map((playerIndex) => willPlayerLoseLife(gamestate, playerIndex)
+        .map((playerIndex) => losingPlayerIndices.includes(playerIndex)
             ? {...players[playerIndex], lives: players[playerIndex].lives - 1}
             : players[playerIndex])
 
-    return { ...gamestate, awaiting, players: updatedPlayers };
+    return { ...scoredGamestate, awaiting, players: updatedPlayers };
 }

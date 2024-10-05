@@ -46,7 +46,7 @@ function isTimeToScore(gamestate) {
  * @param {object} gamestate 
  * @returns {object} Edited gamestate
  */
-function setLowestAndHighestScores(gamestate) {
+function setHighestAndLowestScores(gamestate) {
     const allScores = gamestate.players.map((player) => player.handPoints);
     const lowestScore = Math.min(...allScores);
     const highestScore = Math.max(...allScores);
